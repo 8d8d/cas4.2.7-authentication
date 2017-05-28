@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82ca4102-6190-44a4-86fd-db7eb9536ec3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="82ca4102-6190-44a4-86fd-db7eb9536ec3" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/cas-web/target/" />
@@ -17,24 +15,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="deployerConfigContext.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cas-web/src/main/webapp/WEB-INF/deployerConfigContext.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="34" column="39" lean-forward="false" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
-              <folding>
-                <marker date="1495954540000" expanded="true" signature="4617:5041" ph="..." />
-                <marker date="1495954540000" expanded="true" signature="4811:5025" ph="..." />
-                <marker date="1495954540000" expanded="true" signature="4877:5008" ph="..." />
-                <marker date="1495954540000" expanded="true" signature="5648:5853" ph="..." />
-                <marker date="1495954540000" expanded="true" signature="5955:6047" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1090,7 +1071,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60811000" />
+    <option name="totallyTimeSpent" value="60814000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1290,7 +1271,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="67">
           <caret line="27" column="28" lean-forward="true" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1375,13 +1355,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="34" column="39" lean-forward="false" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
-          <folding>
-            <marker date="1495954540000" expanded="true" signature="4617:5041" ph="..." />
-            <marker date="1495954540000" expanded="true" signature="4811:5025" ph="..." />
-            <marker date="1495954540000" expanded="true" signature="4877:5008" ph="..." />
-            <marker date="1495954540000" expanded="true" signature="5648:5853" ph="..." />
-            <marker date="1495954540000" expanded="true" signature="5955:6047" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1527,7 +1501,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
           <caret line="102" column="24" lean-forward="false" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
