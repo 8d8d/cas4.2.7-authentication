@@ -1,161 +1,96 @@
-<!DOCTYPE web-app PUBLIC
-        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-<web-app>
     <display-name>Archetype Created Web Application</display-name>
-    <!-- 用于单点退出，该过滤器用于实现单点登出功能，可选配置 -->
+
     <listener>
-
-        <listener-class>
-
-            org.jasig.cas.client.session.SingleSignOutHttpSessionListener
-
-        </listener-class>
-
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <!-- 该过滤器用于实现单点登出功能，可选配置。 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:spring-web.xml, classpath:spring-shiro.xml
+        </param-value>
+    </context-param>
 
+    <!-- Shiro配置 -->
     <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
+    <!-- ****************** 单点登录开始 ********************-->
+    <!-- 用于实现单点登出功能  可选 -->
+    <listener>
+        <listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+    </listener>
+
+    <!-- 该过滤器用于实现单点登出功能，单点退出配置，一定要放在其他filter之前 可选 -->
+    <filter>
         <filter-name>CAS Single Sign Out Filter</filter-name>
-
         <filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class>
-
-    </filter>
-
-    <filter-mapping>
-
-        <filter-name>CAS Single Sign Out Filter</filter-name>
-
-        <url-pattern>/*</url-pattern>
-
-    </filter-mapping>
-
-    <!-- 该过滤器负责用户的认证工作，必须启用它 -->
-
-    <filter>
-
-        <filter-name>CASFilter</filter-name>
-
-        <filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class>
-
         <init-param>
-
-            <param-name>casServerLoginUrl</param-name>
-
-            <param-value>http://cas.server.com:8080/cas-web/login</param-value>
-
-        </init-param>
-
-        <!-- 这里的serverName是服务端的IP -->
-
-        <init-param>
-
-            <param-name>serverName</param-name>
-
-            <param-value>http://cas.server.com:8080</param-value>
-
-        </init-param>
-
-    </filter>
-
-    <filter-mapping>
-
-        <filter-name>CASFilter</filter-name>
-
-        <url-pattern>/*</url-pattern>
-
-    </filter-mapping>
-
-    <!-- 该过滤器负责对Ticket的校验工作，必须启用它 -->
-
-    <filter>
-
-        <filter-name>CAS Validation Filter</filter-name>
-
-        <filter-class>
-
-            org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter
-
-        </filter-class>
-
-        <init-param>
-
             <param-name>casServerUrlPrefix</param-name>
-
-            <param-value>http://cas.server.com:8080/cas-web</param-value>
-
+            <param-value>http://127.0.0.1:8080/cas-web/</param-value>
         </init-param>
-
-        <init-param>
-
-            <param-name>serverName</param-name>
-
-            <param-value>http://cas.server.com:8080</param-value>
-
-        </init-param>
-
     </filter>
-
     <filter-mapping>
-
-        <filter-name>CAS Validation Filter</filter-name>
-
+        <filter-name>CAS Single Sign Out Filter</filter-name>
         <url-pattern>/*</url-pattern>
-
     </filter-mapping>
 
-    <!-- 该过滤器负责实现HttpServletRequest请求的包裹， 比如允许开发者通过
-
-  HttpServletRequest的getRemoteUser()方法获得SSO登录用户的登录名，可选配置。 -->
-
+    <!-- 该过滤器对HttpServletRequest请求包装， 可通过HttpServletRequest的getRemoteUser()方法获得登录用户的登录名，可选 -->
     <filter>
-
         <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
-
         <filter-class>
-
             org.jasig.cas.client.util.HttpServletRequestWrapperFilter
-
         </filter-class>
-
     </filter>
-
     <filter-mapping>
-
         <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
-
         <url-pattern>/*</url-pattern>
-
     </filter-mapping>
 
-    <!-- 该过滤器负责把ticket验证后产生的Assertion放入ThreadLocal中，以便 不能访问web层的资源使用。
-    该过滤器可以使得开发者可以通过org.jasig.cas.client.util.AssertionHolder来获取用户的登录名。
-    比如AssertionHolder.getAssertion().getPrincipal().getName()。 -->
-
+    <!-- 该过滤器使得可以通过org.jasig.cas.client.util.AssertionHolder来获取用户的登录名。
+         比如AssertionHolder.getAssertion().getPrincipal().getName()。
+         这个类把Assertion信息放在ThreadLocal变量中，这样应用程序不在web层也能够获取到当前登录信息 -->
     <filter>
-
         <filter-name>CAS Assertion Thread Local Filter</filter-name>
-
         <filter-class>org.jasig.cas.client.util.AssertionThreadLocalFilter</filter-class>
-
     </filter>
-
     <filter-mapping>
-
         <filter-name>CAS Assertion Thread Local Filter</filter-name>
-
         <url-pattern>/*</url-pattern>
-
     </filter-mapping>
+    <!-- ****************** 单点登录结束 ********************-->
 
-    <!-- ======================== 单点登录结束 ======================== -->
+    <servlet>
+        <servlet-name>springMVC</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-web.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springMVC</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
-
         <welcome-file>index.jsp</welcome-file>
-
     </welcome-file-list>
 </web-app>

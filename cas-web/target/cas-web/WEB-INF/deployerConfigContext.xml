@@ -60,10 +60,10 @@
     <bean id="attributeRepository" class="org.jasig.services.persondir.support.NamedStubPersonAttributeDao"
           p:backingMap-ref="attrRepoBackingMap" />
 
-    <!--默认方式-->
+    <!--first 默认方式-->
     <!--<alias name="acceptUsersAuthenticationHandler" alias="primaryAuthenticationHandler" />-->
 
-    <!--使用 MD5对密码进行加密-->
+    <!--second 使用 MD5对密码进行加密-->
     <!--<bean id="MD5PasswordEncoder" class="org.jasig.cas.authentication.handler.DefaultPasswordEncoder" autowire="byName">
         <constructor-arg  value="MD5"/>
     </bean >
@@ -71,10 +71,10 @@
         <property name="passwordEncoder" ref="MD5PasswordEncoder"/>
     </bean>-->
 
-    <!--不适用加密算法-->
+    <!--third 不使用加密算法-->
     <!--<alias name="queryDatabaseAuthenticationHandler" alias="primaryAuthenticationHandler" />-->
 
-
+    <!--forth 通过继承AbstractUsernamePasswordAuthenticationHandler，并实现authenticateUsernamePasswordInternal-->
     <alias name="usernamePasswordAuthenticationHandler" alias="primaryAuthenticationHandler" />
     <alias name="personDirectoryPrincipalResolver" alias="primaryPrincipalResolver" />
 
